@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
-
+from django.urls import reverse
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 
 from .models import Author
@@ -49,7 +49,10 @@ class AuthorCreate(CreateView):
     model = Author
     fields = ['name', 'image', 'bio']
     template_name = "author_create.html"
-    success_url = "/authors/"
+    # success_url = "/authors/"
+
+    def get_success_url(self):
+        return reverse('author_detail', kwargs={'pk': self.object.pk})
 
 class AuthorDetail(DetailView):
     model = Author
@@ -59,4 +62,12 @@ class AuthorUpdate(UpdateView):
     model = Author
     fields = ['name', 'image', 'bio']
     template_name = "author_update.html"
+    success_url = "/authors/"  
+
+    def get_success_url(self):
+        return reverse('author_detail', kwargs={'pk': self.object.pk})  
+    
+class AuthorDelete(DeleteView):
+    model = Author
+    template_name = "author_delete_confirmation.html"
     success_url = "/authors/"    
