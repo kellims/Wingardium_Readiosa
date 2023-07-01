@@ -96,3 +96,13 @@ class BookList(TemplateView):
 class BookDetail(DetailView):
     model = Book
     template_name = "book_detail.html" 
+
+
+class BookUpdate(UpdateView):
+    model = Book
+    fields = ['title', 'image', 'description', 'author']
+    template_name = "book_update.html"
+    success_url = "/books/"  
+
+    def get_success_url(self):
+        return reverse('book_detail', kwargs={'pk': self.object.pk})      
