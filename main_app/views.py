@@ -24,11 +24,11 @@ class About(TemplateView):
     #     return HttpResponse("About Wingardium Readiosa")    
 
 
-class Authors:
-    def __init__(self, name, image, bio):
-        self.name = name
-        self.image = image
-        self.bio = bio
+# class Authors:
+#     def __init__(self, name, image, bio):
+#         self.name = name
+#         self.image = image
+#         self.bio = bio
 
 
 
@@ -83,3 +83,22 @@ class BookCreate(View):
         author = Author.objects.get(pk=pk)
         Book.objects.create(title=title, description=description, image=image, author=author)
         return redirect('author_detail', pk=pk)
+    
+class BookList(TemplateView):
+    template_name = "book_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["books"] = Book.objects.all()
+        return context
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     name = self.request.GET.get("name")
+    #     if name != None:
+    #         context["authors"] = Author.objects.filter(name__icontains=name)
+    #         context["header"] = f"Searching for {name}"
+    #     else:     
+    #         context["authors"] = Author.objects.all()
+    #         # context["header"] = "Authors"
+    #     return context    
