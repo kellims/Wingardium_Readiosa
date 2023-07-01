@@ -31,7 +31,7 @@
         <h3 class="title is-5">Books by {{author.name}}:</h3>
     
         {% for book in author.books.all %}
-        <div class="song">
+        <div class="book">
           <span>{{forloop.counter}}</span>
           <span><b>{{book.title}}</b></span>
           <span>{{book.description}}</span>
