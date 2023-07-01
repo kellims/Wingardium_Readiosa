@@ -4,6 +4,7 @@ from django.http import HttpResponse
 
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
 
 from .models import Author
 
@@ -49,3 +50,7 @@ class AuthorCreate(CreateView):
     fields = ['name', 'image', 'bio']
     template_name = "author_create.html"
     success_url = "/authors/"
+
+class AuthorDetail(DetailView):
+    model = Author
+    template_name = "author_detail.html"    
