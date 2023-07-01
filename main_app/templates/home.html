@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Wingardium Readiosa</h1>
+<div class="home__readinglists">
+    {% for readinglist in readinglists %}
+
+        <div class="readinglist mb-5">
+            <h3 class="title is-3 has-text-success">{{readinglist.title}}</h3>
+            <hr />
+
+            {% for book in readinglist.books.all %}
+
+                <div class="book">
+                    <span>{{forloop.counter}}</span>
+                    <span><b>{{book.title}}</b></span>
+                
+                </div>
+
+            {% endfor %}
+        </div>
+    {% empty %} 
+        <div class="readinglist mb-5">"There are no books in this readinglist"</div>
+    {% endfor %}
+</div>
 {% endblock %}

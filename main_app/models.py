@@ -26,7 +26,7 @@ class Book(models.Model):
 
 class Readinglist(models.Model):
 
-    name = models.CharField(max_length=150)
+    title = models.CharField(max_length=150)
     books = models.ManyToManyField(Book)
 
     def __str__(self):
