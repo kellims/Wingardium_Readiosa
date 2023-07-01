@@ -64,6 +64,11 @@ class AuthorDetail(DetailView):
     model = Author
     template_name = "author_detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["readinglists"] = Readinglist.objects.all()
+        return context
+
 class AuthorUpdate(UpdateView):
     model = Author
     fields = ['name', 'image', 'bio']
@@ -116,6 +121,8 @@ class BookDelete(DeleteView):
     model = Book
     template_name = "book_delete_confirmation.html"
     success_url = "/books/"  
+
+
 
 class ReadinglistBookAssoc(View):
 
