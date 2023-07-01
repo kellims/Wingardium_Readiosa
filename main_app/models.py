@@ -11,3 +11,14 @@ class Author(models.Model):
 
     class Meta:
         ordering = ['name']
+
+
+class Book(models.Model):
+
+    title = models.CharField(max_length=150)
+    description = models.CharField(max_length=500)
+    image = models.CharField(max_length=20000, default='default_image.html')
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="books")
+
+    def __str__(self):
+        return self.title
