@@ -85,7 +85,7 @@ p {
     width: 100%;
     padding: 10px;
     display: grid;
-    grid-template-columns: 0.1fr .8fr 1fr;
+    grid-template-columns: 0.1fr .8fr 0.5fr 0.3fr;
     border-radius: 5px;
 }
 

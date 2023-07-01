@@ -115,4 +115,14 @@ class BookUpdate(UpdateView):
 class BookDelete(DeleteView):
     model = Book
     template_name = "book_delete_confirmation.html"
-    success_url = "/books/"       
+    success_url = "/books/"  
+
+class ReadinglistBookAssoc(View):
+
+    def get(self, request, pk, book_pk):
+        assoc = request.GET.get("assoc")
+        if assoc == "remove":
+            Readinglist.objects.get(pk=pk).book.remove(book_pk)
+        if assoc == "add":
+            Readinglist.objects.get(pk=pk).book.add(book_pk)
+        return redirect('home')         
