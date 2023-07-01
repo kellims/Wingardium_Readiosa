@@ -106,3 +106,8 @@ class BookUpdate(UpdateView):
 
     def get_success_url(self):
         return reverse('book_detail', kwargs={'pk': self.object.pk})      
+
+class BookDelete(DeleteView):
+    model = Book
+    template_name = "book_delete_confirmation.html"
+    success_url = "/books/"       
