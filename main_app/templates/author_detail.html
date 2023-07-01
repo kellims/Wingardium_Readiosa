@@ -19,11 +19,32 @@
                 <i class="fas fa-trash-alt"></i>
             </span>
         </a>
+    
+        
     </div>
     <div class="detail__about">
-        <h4 class="title is-4">About:</h4>
+        <h4 class="title is-4">About Author:</h4>
         <p>{{author.bio}}</p>
     </div>
+    <hr>
+    <div class="detail__books mb-5">
+        <h3 class="title is-5">Books by {{author.name}}:</h3>
+    
+        {% for book in author.books.all %}
+        <div class="song">
+          <span>{{forloop.counter}}</span>
+          <span><b>{{book.title}}</b></span>
+          <span>{{book.description}}</span>
+        </div>
+            {% empty %}
+        <article class="message">
+          <div class="message-header">
+            <p>No Books Available</p>
+          </div>
+        </article>
+    
+        {% endfor %}
+      </div>   
 </div>
 
 {% endblock %}
