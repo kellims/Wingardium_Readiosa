@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Wingardium Readiosa</h1>
+<h1>Welcome to the magical online library, Wingardium Readiosa</h1>
 <div class="home__readinglists">
     {% for readinglist in readinglists %}
 
         <div class="readinglist mb-5">
-            <h3 class="title is-3 has-text-success">{{readinglist.title}}</h3>
+            <h3 class="title is-3 has-text-info">{{readinglist.title}}</h3>
             <hr />
 
             {% for book in readinglist.books.all %}
