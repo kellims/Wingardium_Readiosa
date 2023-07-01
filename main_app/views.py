@@ -13,7 +13,8 @@ class Home(TemplateView):
     #     return HttpResponse("Welcome to Wingardium Readiosa 🧹🪄 📖 ")
     
 
-class About(View):
+class About(TemplateView):
+     template_name = "about.html"
 
-    def get(self, request):
-        return HttpResponse("About Wingardium Readiosa")    
+    # def get(self, request):
+    #     return HttpResponse("About Wingardium Readiosa")    
