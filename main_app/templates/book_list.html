@@ -9,7 +9,7 @@
 
 <div class="gallery">
   {% for book in books %}
-    <a href="{% url 'author_detail' book.author.pk %}">
+    <a href="{% url 'book_detail' book.pk %}">
       <div class="card">
         <div class="card-image">
           <figure class="image is-square">

@@ -92,13 +92,7 @@ class BookList(TemplateView):
         context["books"] = Book.objects.all()
         return context
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     name = self.request.GET.get("name")
-    #     if name != None:
-    #         context["authors"] = Author.objects.filter(name__icontains=name)
-    #         context["header"] = f"Searching for {name}"
-    #     else:     
-    #         context["authors"] = Author.objects.all()
-    #         # context["header"] = "Authors"
-    #     return context    
+
+class BookDetail(DetailView):
+    model = Book
+    template_name = "book_detail.html" 
