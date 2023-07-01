@@ -28,7 +28,44 @@
     </div>
     <hr>
     <div class="detail__books mb-5">
+
         <h3 class="title is-5">Books by {{author.name}}:</h3>
+
+        <form class="mb-5" action="{% url 'book_create' author.pk %}" method="post">
+            {% csrf_token %}
+            <div class="field has-addons">
+                <div class="control">
+                    <input
+                        class="input"
+                        type="text"
+                        name="title"
+                        placeholder="Book Title"
+                        required
+                    />
+                </div>
+                <div class="control">
+                    <input
+                        class="input"
+                        type="text"
+                        name="description"
+                        placeholder="Description of Book"
+                        required
+                    />
+                </div>
+                <div class="control">
+                    <input
+                        class="input"
+                        type="text"
+                        name="image"
+                        placeholder="Book Image"
+                        required
+                    />
+                </div>
+                <div class="control">
+                    <input class="button is-primary" type="submit" value="Add Book" />
+                </div>
+            </div>
+        </form>
     
         {% for book in author.books.all %}
         <div class="book">

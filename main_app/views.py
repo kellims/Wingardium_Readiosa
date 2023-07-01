@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views import View
 from django.http import HttpResponse
 from django.urls import reverse
@@ -6,7 +7,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 
-from .models import Author
+from .models import Author, Book
 
 # Create your views here.
 class Home(TemplateView):
@@ -71,3 +72,14 @@ class AuthorDelete(DeleteView):
     model = Author
     template_name = "author_delete_confirmation.html"
     success_url = "/authors/"    
+
+
+class BookCreate(View):
+
+    def post(self, request, pk):
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        image = request.POST.get("image")
+        author = Author.objects.get(pk=pk)
+        Book.objects.create(title=title, description=description, image=image, author=author)
+        return redirect('author_detail', pk=pk)
