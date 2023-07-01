@@ -39,5 +39,9 @@ class AuthorList(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["authors"] = Author.objects.all()
+        name = self.request.GET.get("name")
+        if name != None:
+            context["authors"] = Author.objects.filter(name__icontains=name)
+        else:     
+            context["authors"] = Author.objects.all()
         return context
