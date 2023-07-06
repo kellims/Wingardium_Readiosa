@@ -86,14 +86,10 @@ WSGI_APPLICATION = 'Wingardium_Readiosa_project.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-  'default': dj_database_url.config{
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'Wingardium_Readiosa',
-    'USER': os.environ['DB_USER'],
-    'PASSWORD': os.environ['DB_PW'],
-    'HOST': os.environ['DB_HOST'],
-    'PORT': '5432',
-  }
+  'default': dj_database_url.config(
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 
@@ -135,7 +131,7 @@ STATIC_URL = 'static/'
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    
+
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'main_app/static')]
 
 # Default primary key field type
