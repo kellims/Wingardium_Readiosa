@@ -129,7 +129,14 @@ class ReadinglistBookAssoc(View):
     def get(self, request, pk, book_pk):
         assoc = request.GET.get("assoc")
         if assoc == "remove":
-            Readinglist.objects.get(pk=pk).book.remove(book_pk)
+            Readinglist.objects.get(pk=pk).books.remove(book_pk)
         if assoc == "add":
-            Readinglist.objects.get(pk=pk).book.add(book_pk)
+            Readinglist.objects.get(pk=pk).books.add(book_pk)
         return redirect('home')         
+    
+class ReadingListCreate(View):
+
+    def post(self, request):
+        title = request.POST.get("title")
+        readinglist = Readinglist.objects.create(title=title)
+        return redirect('home')    

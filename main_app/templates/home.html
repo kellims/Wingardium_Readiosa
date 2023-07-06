@@ -1,12 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Welcome to the magical online library, Wingardium Readiosa</h1>
+<form class="mb-5" action="{% url 'readinglist_create' %}" method="post">
+    {% csrf_token %}
+    <div class="field has-addons">
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                name="title"
+                placeholder="Name Of Reading list"
+                required
+            />
+        </div>
+      
+        <div class="control">
+            <input class="button is-primary" type="submit" value="Add Reading List" />
+        </div>
+    </div>
+</form>
 <div class="home__readinglists">
     {% for readinglist in readinglists %}
 
         <div class="readinglist mb-5">
             <h3 class="title is-3 has-text-info">{{readinglist.title}}</h3>
             <hr />
+        </div>
+          
 
             {% for book in readinglist.books.all %}
 
